@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  CreateDigiturkStreams:
+  CreateFuboPSSHs:
     runs-on: 
       - self-hosted
       - macOS
@@ -20,9 +20,30 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install -r requirements.txt
           
-      - name: Run Main script # run main.py
-        run: python3 main.py
+      - name: Run PSSH script # run main.py
+        run: python3 fubo_pssh.py
+
+  CreateFuboKeys:
+    runs-on: 
+     - self-hosted
+     - macOS
+    needs: CreateFuboPSSHs
         
+    steps:
+      - name: Run Keys script
+        run: python3 fubo_keys.py
+
+  CreateFuboURLs:
+    runs-on: 
+     - self-hosted
+     - macOS
+    needs: CreateFuboKeys
+        
+    steps:
+      - name: Run Main script
+        run: |
+          python3 main.py
+
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
@@ -35,25 +56,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main 
-
-  XAccelStreamUpload:
-    runs-on: 
-     - self-hosted
-     - macOS
-    needs: CreateDigiturkStreams
-        
-    steps:
-      - name: Run XAccel script
-        run: |
-          python3 XAccel.py
-
-  StopRestartStreams :
-    runs-on: 
-     - self-hosted
-     - macOS
-    needs: XAccelStreamUpload
-        
-    steps:
-      - name: Run XAccel script
-        run: |
-          python3 XAccel_start_stop.py
