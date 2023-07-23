@@ -1,0 +1,59 @@
+name: run main.py
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Every day at 3am
+
+  workflow_dispatch:
+
+jobs:
+  CreateDigiturkStreams:
+    runs-on: 
+      - self-hosted
+      - macOS
+
+    steps:
+      - uses: actions/checkout@v2 # checkout the repository content to github runner
+          
+      - name: Install requirements packages
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
+          
+      - name: Run Main script # run main.py
+        run: python3 main.py
+        
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main 
+
+  XAccelStreamUpload:
+    runs-on: 
+     - self-hosted
+     - macOS
+    needs: CreateDigiturkStreams
+        
+    steps:
+      - name: Run XAccel script
+        run: |
+          python3 XAccel.py
+
+  StopRestartStreams :
+    runs-on: 
+     - self-hosted
+     - macOS
+    needs: XAccelStreamUpload
+        
+    steps:
+      - name: Run XAccel script
+        run: |
+          python3 XAccel_start_stop.py
