@@ -3,28 +3,10 @@ name: Run main.py
 on:
   schedule:
     - cron: '0 3 * * *' # Every day at 3am
-  workflow_dispatch:
+  
+    workflow_dispatch:
 
 jobs:
-  commit_and_push:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Configure Git
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
-
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.MY_PAT_TOKEN }}
-          branch: main
-
   CreateFuboPSSHs:
     runs-on:
       - self-hosted
@@ -42,9 +24,17 @@ jobs:
 
       # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
-        uses: ./.github/actions/commit_and_push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
+          branch: main
 
   CreateFuboKeys:
     runs-on:
@@ -57,9 +47,17 @@ jobs:
 
       # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
-        uses: ./.github/actions/commit_and_push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
+          branch: main
 
   CreateFuboURLs:
     runs-on:
@@ -72,9 +70,17 @@ jobs:
 
       # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
-        uses: ./.github/actions/commit_and_push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
+          branch: main
 
   XAccelUpload:
     runs-on:
@@ -87,9 +93,17 @@ jobs:
 
       # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
-        uses: ./.github/actions/commit_and_push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
+          branch: main
 
   XAccelStartStop:
     runs-on:
@@ -102,6 +116,14 @@ jobs:
 
       # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
-        uses: ./.github/actions/commit_and_push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
+          branch: main
