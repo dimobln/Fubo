@@ -29,19 +29,15 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Auto-update repository after CreateFuboPSSHs job"
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          git diff-index --quiet HEAD || git commit -m "Auto-update repository after CreateFuboPSSHs job"
+          git push origin main  # Replace 'main' with the correct branch name if needed
 
   CreateFuboKeys:
     runs-on:
       - self-hosted
       - macOS
     needs: CreateFuboPSSHs
+
     steps:
       - name: Run Keys script
         run: python3 fubo_keys.py
@@ -52,19 +48,15 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Auto-update repository after CreateFuboPSSHs job"
-
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          git diff-index --quiet HEAD || git commit -m "Auto-update repository after CreateFuboKeys job"
+          git push origin main  # Replace 'main' with the correct branch name if needed
 
   CreateFuboURLs:
     runs-on:
       - self-hosted
       - macOS
     needs: CreateFuboKeys
+
     steps:
       - name: Run Main script
         run: python3 main.py
@@ -75,19 +67,15 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Auto-update repository after CreateFuboPSSHs job"
-
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          git diff-index --quiet HEAD || git commit -m "Auto-update repository after CreateFuboURLs job"
+          git push origin main  # Replace 'main' with the correct branch name if needed
 
   XAccelUpload:
     runs-on:
       - self-hosted
       - macOS
     needs: CreateFuboURLs
+
     steps:
       - name: Run Xaccel script
         run: python3 XAccel_fubo.py
@@ -98,19 +86,15 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Auto-update repository after CreateFuboPSSHs job"
-
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          git diff-index --quiet HEAD || git commit -m "Auto-update repository after XAccelUpload job"
+          git push origin main  # Replace 'main' with the correct branch name if needed
 
   XAccelStartStop:
     runs-on:
       - self-hosted
       - macOS
     needs: XAccelUpload
+
     steps:
       - name: Run Xaccel Start Stop script
         run: python3 XAccel+start_stop_fubo.py
@@ -121,10 +105,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Auto-update repository after CreateFuboPSSHs job"
-
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          git diff-index --quiet HEAD || git commit -m "Auto-update repository after XAccelStartStop job"
+          git push origin main  # Replace 'main' with the correct branch name if needed
