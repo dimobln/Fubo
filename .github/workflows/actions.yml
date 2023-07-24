@@ -3,7 +3,6 @@ name: Run main.py
 on:
   schedule:
     - cron: '0 3 * * *' # Every day at 3am
-
   workflow_dispatch:
 
 jobs:
@@ -12,14 +11,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
       - name: Configure Git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
-      
+
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
@@ -27,28 +26,28 @@ jobs:
           branch: main
 
   CreateFuboPSSHs:
-    runs-on: 
+    runs-on:
       - self-hosted
       - macOS
     steps:
       - uses: actions/checkout@v2 # checkout the repository content to github runner
-          
+
       - name: Install requirements packages
         run: |
           python3 -m pip install --upgrade pip
           pip3 install -r requirements.txt
-          
+
       - name: Run PSSH script # run main.py
         run: python3 fubo_pssh.py
 
-      # Reference the commit_and_push job
+      # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   CreateFuboKeys:
-    runs-on: 
+    runs-on:
       - self-hosted
       - macOS
     needs: CreateFuboPSSHs
@@ -56,14 +55,14 @@ jobs:
       - name: Run Keys script
         run: python3 fubo_keys.py
 
-      # Reference the commit_and_push job
+      # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   CreateFuboURLs:
-    runs-on: 
+    runs-on:
       - self-hosted
       - macOS
     needs: CreateFuboKeys
@@ -71,14 +70,14 @@ jobs:
       - name: Run Main script
         run: python3 main.py
 
-      # Reference the commit_and_push job
+      # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   XAccelUpload:
-    runs-on: 
+    runs-on:
       - self-hosted
       - macOS
     needs: CreateFuboURLs
@@ -86,14 +85,14 @@ jobs:
       - name: Run Xaccel script
         run: python3 XAccel_fubo.py
 
-      # Reference the commit_and_push job
+      # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
           github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   XAccelStartStop:
-    runs-on: 
+    runs-on:
       - self-hosted
       - macOS
     needs: XAccelUpload
@@ -101,7 +100,7 @@ jobs:
       - name: Run Xaccel Start Stop script
         run: python3 XAccel+start_stop_fubo.py
 
-      # Reference the commit_and_push job
+      # Reference the commit_and_push job after your steps are completed
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
