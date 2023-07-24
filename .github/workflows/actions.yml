@@ -28,10 +28,15 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Auto-update repository after CreateFuboPSSHs job"
-          git push origin main  # Replace 'main' with the correct branch name if needed
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "Auto-update repository" --allow-empty)
 
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          
   CreateFuboKeys:
     runs-on:
       - self-hosted
@@ -47,9 +52,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Auto-update repository after CreateFuboKeys job"
-          git push origin main  # Replace 'main' with the correct branch name if needed
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "Auto-update repository" --allow-empty)
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
 
   CreateFuboURLs:
     runs-on:
@@ -66,9 +76,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Auto-update repository after CreateFuboURLs job"
-          git push origin main  # Replace 'main' with the correct branch name if needed
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "Auto-update repository" --allow-empty)
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
 
   XAccelUpload:
     runs-on:
@@ -85,9 +100,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Auto-update repository after XAccelUpload job"
-          git push origin main  # Replace 'main' with the correct branch name if needed
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "Auto-update repository" --allow-empty)
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
 
   XAccelStartStop:
     runs-on:
@@ -104,6 +124,11 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Auto-update repository after XAccelStartStop job"
-          git push origin main  # Replace 'main' with the correct branch name if needed
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "Auto-update repository" --allow-empty)
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
