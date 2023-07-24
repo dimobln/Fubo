@@ -1,16 +1,17 @@
-name: Run main.py
+name: run main.py
 
 on:
   schedule:
     - cron: '0 3 * * *' # Every day at 3am
   
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   CreateFuboPSSHs:
     runs-on:
       - self-hosted
       - macOS
+
     steps:
       - uses: actions/checkout@v2 # checkout the repository content to github runner
 
