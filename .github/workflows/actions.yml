@@ -23,7 +23,7 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT_TOKEN }}
           branch: main
 
   CreateFuboPSSHs:
@@ -45,7 +45,7 @@ jobs:
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   CreateFuboKeys:
     runs-on: 
@@ -60,7 +60,7 @@ jobs:
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   CreateFuboURLs:
     runs-on: 
@@ -75,7 +75,7 @@ jobs:
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   XAccelUpload:
     runs-on: 
@@ -90,7 +90,7 @@ jobs:
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT_TOKEN }}
 
   XAccelStartStop:
     runs-on: 
@@ -105,4 +105,4 @@ jobs:
       - name: Commit and Push Changes
         uses: ./.github/actions/commit_and_push
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_PAT_TOKEN }}
