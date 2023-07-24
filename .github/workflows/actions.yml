@@ -34,6 +34,7 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
 
   CreateFuboKeys:
@@ -56,6 +57,7 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
 
   CreateFuboURLs:
@@ -78,6 +80,7 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
 
   XAccelUpload:
@@ -100,6 +103,7 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
 
   XAccelStartStop:
@@ -122,4 +126,5 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
