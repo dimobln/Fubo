@@ -33,13 +33,13 @@ def output_on_end(**kwargs):
     pass
 
 # Specify the path to the Chrome binary
-chrome_binary_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+chrome_binary_path = "/usr/bin/google-chrome"
 
 # Specify the path to the chromedriver executable
-chromedriver_path = "/opt/homebrew/bin/chromedriver"
+chromedriver_path = "/usr/local/bin/chromedriver"
 
 options = webdriver.ChromeOptions()
-# options.add_argument("--headless=new")  # Set the new headless mode introduced in Chrome version 96
+options.add_argument("--headless=new")  # Set the new headless mode introduced in Chrome version 96
 options.add_argument("--remote-debugging-port=8000")
 
 # Set the binary location in ChromeOptions
