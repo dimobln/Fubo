@@ -33,10 +33,7 @@ def output_on_end(**kwargs):
 chrome_binary_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 # Specify the path to the chromedriver executable
-chromedriver_path = "/usr/local/bin/chromedriver"
-
-# Specify your custom User-Agent string
-user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+chromedriver_path = "/opt/homebrew/bin/chromedriver"
 
 options = webdriver.ChromeOptions()
 options.add_argument("--headless=new")  # Set the new headless mode introduced in Chrome version 96
@@ -88,21 +85,10 @@ time.sleep(5) # Give time for the page to load (adjust as needed)
 #-------------- ESPN ---------------
 
 # Step 4: Open the "Guide" element
-guide_element = driver.find_element(By.XPATH, '//a[@data-testid="guide-lnk"]')
-guide_element.click()
-time.sleep(5) # Give time for the page to load (adjust as needed)
+subpage_url = 'https://www.fubo.tv/watch?channelId=10179'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 5: Input "ESPN" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("ESPN")
-time.sleep(7) # Give time for the page to load (adjust as needed)
-
-# Step 6: Click on the image with alt attribute containing "ESPN"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "ESPN")]')
-img_element.click()
-
-# Step 8: Monitor the network traffic on the subpage for a specified duration
+# Step 5: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -116,35 +102,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5) # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(7)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- ESPN 2 ---------------
 
-# Step 11: Input "ESPN 2" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("ESPN 2")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 6: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=12444'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "ESPN2"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "ESPN2")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 7: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -158,35 +129,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- FS1 ---------------
 
-# Step 16: Input "FS1" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("FS1")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 8: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=94653'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 17: Click on the image with alt attribute containing "FS1"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "FOX Sports 1")]')
-img_element.click()
-
-# Step 8: Monitor the network traffic on the subpage for a specified duration
+# Step 9: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -200,35 +156,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- FS2 ---------------
 
-# Step 11: Input "FS2" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("FS2")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 10: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=69553'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "FS2"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "FOX Sports 2")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 11: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -242,35 +183,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- MSNBC ---------------
 
-# Step 11: Input "MSNBC" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("MSNBC")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 12: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=75083'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "MSNBC"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "MSNBC")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 13: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -284,35 +210,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- beIN SPORTS ---------------
 
-# Step 11: Input "beIN SPORTS" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("bein")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 14: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=88749'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "FOX 4K"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "beIN SPORTS")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 15: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -326,35 +237,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- beIN SPORTS En Español ---------------
 
-# Step 11: Input "beIN SPORTS En Español" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("bein")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 16: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=88754'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "FS1 4K"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "beIN SPORTS En Español")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 17: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -368,35 +264,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- ESPNEWS ---------------
 
-# Step 11: Input "ESPNEWS" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("ESPNEWS")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 18: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=16485'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "NBC Sports 4K"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "ESPNEWS")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 19: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -410,35 +291,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- Los Angeles Dodgers ---------------
 
-# Step 11: Input "Los Angeles Dodgers" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("Los Angeles Dodgers")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 20: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=18220'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "Los Angeles Dodgers"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "MLB.TV - Los Angeles Dodgers")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 21: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -452,35 +318,20 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 #-------------- TUDN ---------------
 
-# Step 11: Input "TUDN" into the text field
-search_field = driver.find_element(By.XPATH, '//input[@data-testid="search-field-input"]')
-search_field.clear()  # Clear any existing text in the field (optional)
-search_field.send_keys("TUDN")
-time.sleep(7) # Give time for the page to load (adjust as needed)
+# Step 22: Open the "Guide" element
+subpage_url = 'https://www.fubo.tv/watch?channelId=88839'  # Replace with the desired subpage URL
+driver.get(subpage_url)
 
-# Step 12: Click on the image with alt attribute containing "TUDN"
-img_element = driver.find_element(By.XPATH, '//img[contains(@alt, "TUDN")]')
-img_element.click()
-
-# Step 14: Monitor the network traffic on the subpage for a specified duration
+# Step 23: Monitor the network traffic on the subpage for a specified duration
 duration = 5  # Duration to capture network traffic in seconds
 start_time = time.time()
 
@@ -494,21 +345,12 @@ while time.time() - start_time < duration:
     # Capture the time taken for the actions and print it (optional)
     log_queue.put(f"{int(time.time() - start)}")
 
-    # Step 7: Click on the "Play" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-play-btn"]')
-    play_button.click()
-    time.sleep(5)  # Give time for the page to load (adjust as needed)
-
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-
-    # Step 9: Click on the "Exit" button
-    play_button = driver.find_element(By.XPATH, '//button[@data-testid="player-close-btn"]')
-    play_button.click()
-    time.sleep(15)  # Give time for the page to load (adjust as needed)
+    time.sleep(10)  # Give time for the page to load (adjust as needed)
 
 # Stop capturing network traffic and finish the log writer thread
 log_queue.put(None)  # Signal the log_writer thread to exit
