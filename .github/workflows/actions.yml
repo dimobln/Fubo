@@ -10,7 +10,7 @@ jobs:
   CreateFuboPSSHs:
     runs-on:
       - self-hosted
-      - macOS
+      - Linux
 
     steps:
       - uses: actions/checkout@v2 # checkout the repository content to github runner
