@@ -86,7 +86,7 @@ logo_element = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="p
 # Step 3: Navigate to the "My Profile" element
 logo_element = driver.find_element(By.XPATH, '//div[@class="profile-name"]')
 logo_element.click()  # Click on the logo element
-time.sleep(5) # Give time for the page to load (adjust as needed)
+time.sleep(15) # Give time for the page to load (adjust as needed)
 
 #-------------- ESPN ---------------
 
