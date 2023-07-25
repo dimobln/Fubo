@@ -40,7 +40,7 @@ jobs:
   CreateFuboKeys:
     runs-on:
       - self-hosted
-      - macOS
+      - Linux
     needs: CreateFuboPSSHs
 
     steps:
@@ -64,7 +64,7 @@ jobs:
   CreateFuboURLs:
     runs-on:
       - self-hosted
-      - macOS
+      - Linux
     needs: CreateFuboKeys
 
     steps:
@@ -88,7 +88,7 @@ jobs:
   XAccelUpload:
     runs-on:
       - self-hosted
-      - macOS
+      - Linux
     needs: CreateFuboURLs
 
     steps:
@@ -112,7 +112,7 @@ jobs:
   XAccelStartStop:
     runs-on:
       - self-hosted
-      - macOS
+      - Linux
     needs: XAccelUpload
 
     steps:
