@@ -83,8 +83,10 @@ login_button.click()
 wait = WebDriverWait(driver, 30)  # Maximum wait time of 30 seconds
 logo_element = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="profile-name"]')))
 
-# Click on the "My Profile" element
-logo_element.click()
+# Step 3: Navigate to the "My Profile" element
+logo_element = driver.find_element(By.XPATH, '//div[@class="profile-name"]')
+logo_element.click()  # Click on the logo element
+time.sleep(5) # Give time for the page to load (adjust as needed)
 
 #-------------- ESPN ---------------
 
