@@ -4,6 +4,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 import threading
 import queue
 import csv
@@ -75,12 +78,13 @@ password_input.send_keys(password)
 # Step 2: Submit the login form
 login_button = driver.find_element(By.CSS_SELECTOR, 'button[data-testid="sign-in-email-btn"]')   # Use By.CSS_SELECTOR to locate elements
 login_button.click()
-time.sleep(7) # Give time for the page to load (adjust as needed)
 
-# Step 3: Navigate to the "My Profile" element
-logo_element = driver.find_element(By.XPATH, '//div[@class="profile-name"]')
-logo_element.click()  # Click on the logo element
-time.sleep(5) # Give time for the page to load (adjust as needed)
+# Wait for the "My Profile" element to be clickable
+wait = WebDriverWait(driver, 30)  # Maximum wait time of 30 seconds
+logo_element = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="profile-name"]')))
+
+# Click on the "My Profile" element
+logo_element.click()
 
 #-------------- ESPN ---------------
 
@@ -107,7 +111,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- ESPN 2 ---------------
 
@@ -134,7 +138,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- FS1 ---------------
 
@@ -161,7 +165,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- FS2 ---------------
 
@@ -188,7 +192,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- MSNBC ---------------
 
@@ -215,7 +219,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- beIN SPORTS ---------------
 
@@ -242,7 +246,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- beIN SPORTS En Español ---------------
 
@@ -269,7 +273,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- ESPNEWS ---------------
 
@@ -296,7 +300,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- Los Angeles Dodgers ---------------
 
@@ -323,7 +327,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 #-------------- TUDN ---------------
 
@@ -350,7 +354,7 @@ while time.time() - start_time < duration:
 
     # Move the mouse cursor by a small offset (you can adjust the offset values)
     actions.move_by_offset(5, 5).perform()
-    time.sleep(10)  # Give time for the page to load (adjust as needed)
+    time.sleep(15)  # Give time for the page to load (adjust as needed)
 
 # Stop capturing network traffic and finish the log writer thread
 log_queue.put(None)  # Signal the log_writer thread to exit
